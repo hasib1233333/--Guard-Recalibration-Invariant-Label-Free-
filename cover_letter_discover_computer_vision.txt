@@ -1,0 +1,35 @@
+Md Hasibuzzaman
+Department of Computer Science and Information Engineering
+Asia University
+Taichung, Taiwan
+hsbuzzaman@gmail.com
+
+July 31, 2026
+
+Dear Editor-in-Chief,
+
+I am pleased to submit my manuscript titled "tau-Guard: Recalibration-Invariant, Label-Free Drift Detection for Visual Recognition Systems via Cross-Signal Rank-Agreement Decay" for consideration in Discover Computer Vision.
+
+This paper addresses a specific, previously unaddressed failure mode in label-free monitoring of deployed visual recognition systems: standard confidence-distribution drift detectors (e.g., Confidence-KS, PSI) cannot distinguish genuine visual drift -- from camera degradation, lighting changes, sensor aging, or domain shift -- from routine post-hoc recalibration (temperature scaling, Platt scaling, isotonic regression), and consequently raise false alarms whenever a deployed vision model is merely recalibrated with no change to the underlying image distribution. I introduce tau-Guard, a label-free monitor that tracks the rank agreement (Kendall's tau) between a classifier's predictive entropy and an independent feature-space novelty score. Because Kendall's tau depends only on ranks, it is provably invariant to any strictly monotone recalibration of confidence -- a property established with an exact invariance lemma, and, for the practically important multiclass temperature-scaling case, with a proven analytical bound (as a function of logit margin and temperature) that closes the gap between the exact theoretical guarantee and its empirical approximation.
+
+The manuscript's empirical scope is intentionally broad and layered, so that the central claim is tested well beyond any single dataset or model family:
+
+- A classical-classifier image-classification benchmark, with the shift mechanism visualized directly in pixel space and in embedding space via t-SNE.
+- Two architecturally distinct real pretrained CNNs (ResNet-20 and RepVGG-A0, whose embeddings differ 20-fold in dimensionality) evaluated on real CIFAR-10 images under real CIFAR-10-C-style corruptions.
+- A real CLIP vision-language foundation model (OpenCLIP, LAION-400M-trained) evaluated via genuine zero-shot classification on PACS, a real-world domain-generalization benchmark of photographs and stylistically distinct artistic images -- providing a genuine camera/photograph-based case study alongside a separate real-world streaming benchmark (the Electricity concept-drift dataset).
+- A six-method comparison (including STUDD and D3, reimplemented for this study) across eight datasets and three classifier families, an ablation extending the novelty-score choice to an energy-based OOD score, a CUSUM sequential-monitoring comparison reporting Average Run Length and detection delay, and a measured runtime/storage complexity analysis.
+
+Throughout, results are reported as directly as possible: shift-detection sensitivity is honestly architecture-, corruption-, and domain-dependent, and two implementation issues discovered during the study (an invalid SVM recalibration proxy, and a reference-resampling bug in the MMD baseline that surfaced only at higher embedding dimensionality) are disclosed and corrected in the manuscript itself, with the affected experiments rerun in full rather than patched selectively. The manuscript also states plainly, rather than glossing over, what remains untested: ImageNet-scale data, larger vision-transformer backbones, and object-detection settings.
+
+I believe this combination of a compact, provable theoretical contribution and a deliberately broad, honestly-reported empirical validation -- spanning classical classifiers, convolutional networks, and a modern foundation model -- is well suited to Discover Computer Vision's scope across visual computing and machine perception, and directly relevant to practitioners monitoring deployed vision systems in production.
+
+This manuscript is original, has not been published previously, and is not currently under review at any other journal. There are no conflicts of interest to declare. All code, data provenance, and raw results necessary to reproduce every reported number are made publicly available at the repository cited in the manuscript's Data Availability and Reproducibility Statement.
+
+Thank you for considering this submission. I look forward to your response and am happy to provide any additional information the review process may require.
+
+Sincerely,
+
+Md Hasibuzzaman
+Department of Computer Science and Information Engineering
+Asia University, Taichung, Taiwan
+hsbuzzaman@gmail.com
